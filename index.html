@@ -120,14 +120,96 @@
             display: block;
         }
     }
+
+    .skill {
+        padding: 0.4rem;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+        background: #df479d;
+        color: white;
+        transition: 0.3s;        
+        border-radius: 50px;
+    }
+    li span {
+        margin: 0 0 0 1rem;
+        background: yellow;
+        color: black;
+    }
     </style>
+    <script>
+            function changeColor1() {
+               document.getElementById("wow1").style.color = "red";
+            };
+            function changeColor2() {
+               document.getElementById("wow2").style.color = "yellow";
+            };
+            function changeColor11() {
+               document.getElementById("wow1").style.color = "white";
+            };
+            function changeColor22() {
+               document.getElementById("wow2").style.color = "white";
+            };
+            function chBackcolor(color) {
+                document.body.style.background = color;
+            }
+            //--------------
+            var myNodelist = document.getElementsByTagName("li");
+            var i;
+            for (i = 0; i < myNodelist.length; i++) {
+                var span = document.createElement("span");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                myNodelist[i].appendChild(span);
+            }
+
+            var close = document.getElementsByClassName("close");
+            var i;
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+            function newElement() {
+                var li = document.createElement("li");
+                var inputValue = document.getElementById("addSkill").value;
+                var t = document.createTextNode(inputValue);
+                li.appendChild(t);
+                if (inputValue === '') {
+                    alert("Input your skill");
+                } else {
+                    document.getElementById("listul").appendChild(li);
+                }
+                document.getElementById("addSkill").value = "";
+                var span = document.createElement("span");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+                for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function () {
+                        var div = this.parentElement;
+                        div.style.display = "none";
+                    }
+                }
+            }
+            //--------------
+            function changeName(){
+                let name = prompt("Input your new name", document.getElementById("myname").innerText);
+                if(name!=null){
+                    document.getElementById("myname").innerHTML = name
+                }
+            }
+    </script>
 </head>
 <body>
     <div id="header" class="p-colors">
         <div class="resume-pic">
         </div>
         <div class="resume-summary">
-            <h1>Name : Chanintorn Chalermsuk<br>Nickname : Gear</h1>
+            <h1>Name : <span  id="myname" onclick="changeName()"> Chanintorn Chalermsuk</span><br>Nickname : Gear</h1>
             Hello! My name is Chanintorn Chalermsuk.
             I am 43 years old.
             I live is Bangkok with my wife.
@@ -148,7 +230,7 @@
 
     <div id="main">
         <div class="long-details">            
-            <h3 class="p-colors section-head">
+            <h3 id="wow1"   onmouseover="changeColor1()" onmouseout="changeColor11()" class="p-colors section-head">
                 <i class="fas fa-graduation-cap"></i>
                 Education
             </h3>
@@ -169,10 +251,10 @@
         </div>
 
         <div class="short-details">
-            <h3 class="p-colors skills section-head">
+            <h3 id="wow2"  onmouseover="changeColor2()" onmouseout="changeColor22()" class="p-colors skills section-head">
                 <i class="fas fa-star"></i> Skills
             </h3>
-            <ul>
+            <ul id="listul">
                 <li>JAVA</li>
                 <li>Android</li>
                 <li>Kotlin</li>
@@ -181,5 +263,18 @@
             </ul>
         </div>
     </div>
+
+    <input type="text" id="addSkill">
+    <span class="skill" onclick="newElement()">
+        เพิ่มสกิล
+    </span>
+<br><br>
+    <button style="background-color: red;" onclick="chBackcolor('red')">Change Background Color</button>
+    &nbsp;&nbsp;&nbsp;
+    <button style="background-color: green;"  onclick="chBackcolor('green')">Change Background Color</button>
+    <br><br>
+    <button style="background-color: blue;"  onclick="chBackcolor('blue')">Change Background Color</button>
+    &nbsp;&nbsp;&nbsp;
+    <button style="background-color: white;"  onclick="chBackcolor('white')">Change Background Color</button>
 </body>
 </html>
