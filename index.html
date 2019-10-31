@@ -86,6 +86,40 @@
     #main .timeline .time {
         width: 20%;
     }
+
+    @media screen and (max-width: 600px) {
+        #header {
+            flex-direction: column;
+        }
+
+        #header .profile-summary {
+            text-align: center;
+            padding-top: 0;
+        }
+
+        #header .profile-pic {
+            margin: 16px 16px 0;
+        }
+
+        #contacts {
+            display: block;
+            padding: 8px 16px;
+            line-height: 2em;
+        }
+
+        #contacts a {
+            padding: 0 16px 0 0;
+        }
+
+        #contacts a:hover {
+            background: none;
+            text-shadow: 0 0 16px #fff;
+        }
+
+        #main {
+            display: block;
+        }
+    }
     </style>
 </head>
 <body>
